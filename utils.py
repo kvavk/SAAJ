@@ -8,7 +8,7 @@ SARC_MAIN = SARC_DATA + 'main/'
 SARC_POL = SARC_DATA + 'pol/'
 
 
-def load_sarc_responses(train_file, test_file, comment_file, lower=True):
+def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=True):
   '''loads SARC data from csv files
   Args:
     train_file: csv file with train sequences
@@ -29,6 +29,7 @@ def load_sarc_responses(train_file, test_file, comment_file, lower=True):
   train_labels = []
   with open(train_file, 'r') as f:
     reader = csv.reader(f, delimiter='|')
+    counter = 0
     for row in reader:
       ancestors = row[0].split(' ')
       responses = row[1].split(' ')
@@ -40,11 +41,16 @@ def load_sarc_responses(train_file, test_file, comment_file, lower=True):
         train_docs['ancestors'].append([comments[r]['text'] for r in ancestors])
         train_docs['responses'].append([comments[r]['text'] for r in responses])
       train_labels.append(labels)
+      counter += 1
+      if max is not None:
+        if counter > max:
+          break
 
   test_docs = {'ancestors': [], 'responses': []}
   test_labels = []
   with open(test_file, 'r') as f:
     reader = csv.reader(f, delimiter='|')
+    counter = 0
     for row in reader:
       ancestors = row[0].split(' ')
       responses = row[1].split(' ')
@@ -56,5 +62,9 @@ def load_sarc_responses(train_file, test_file, comment_file, lower=True):
         test_docs['ancestors'].append([comments[r]['text'] for r in ancestors])
         test_docs['responses'].append([comments[r]['text'] for r in responses])
       test_labels.append(labels)
+      counter += 1
+      if max is not None:
+        if counter > max:
+          break
 
   return train_docs, test_docs, train_labels, test_labels
