@@ -42,9 +42,7 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
         train_docs['responses'].append([comments[r]['text'] for r in responses])
       train_labels.append(labels)
       counter += 1
-      if max is not None:
-        if counter > max:
-          break
+      print(counter)
 
   test_docs = {'ancestors': [], 'responses': []}
   test_labels = []
@@ -63,8 +61,6 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
         test_docs['responses'].append([comments[r]['text'] for r in responses])
       test_labels.append(labels)
       counter += 1
-      if max is not None:
-        if counter > max:
-          break
+      print(counter)
 
   return train_docs, test_docs, train_labels, test_labels
