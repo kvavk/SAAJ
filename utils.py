@@ -32,7 +32,9 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
     counter = 0
     for row in reader:
       ancestors = row[0].split(' ')
+      print(ancestors)
       responses = row[1].split(' ')
+      print(responses)
       labels = row[2].split(' ')
       if lower:
         train_docs['ancestors'].append([comments[r]['text'].lower() for r in ancestors])
