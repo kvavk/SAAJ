@@ -24,6 +24,7 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
 
   with open(comment_file, 'r') as f:
     comments = json.load(f)
+  print('hi')
 
   train_docs = {'ancestors': [], 'responses': []}
   train_labels = []
