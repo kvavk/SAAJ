@@ -48,7 +48,7 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
   test_docs = {'ancestors': [], 'responses': []}
   test_labels = []
   with open(test_file, 'r') as f:
-    reader = csv.reader(f, delimiter='|
+    reader = csv.reader(f, delimiter='|')
     for row in reader:
       ancestors = row[0].split(' ')
       responses = row[1].split(' ')
