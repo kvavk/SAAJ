@@ -32,6 +32,7 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
       print(comments['7uaac'])
       print(comments)
       counter = 0
+      print(counter)
       for row in reader:
         ancestors = row[0].split(' ')
         print(ancestors)
