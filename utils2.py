@@ -29,6 +29,8 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
     with open(train_file, 'r') as f:
       reader = csv.reader(f, delimiter='|')
       comments = ijson.items(f, "item")
+      print(comments['7uaac'])
+      print(comments)
       counter = 0
       for row in reader:
         ancestors = row[0].split(' ')
@@ -55,6 +57,7 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
         ancestors = row[0].split(' ')
         responses = row[1].split(' ')
         labels = row[2].split(' ')
+        print([r['text'].lower() for r in comments])
         if lower:
           test_docs['ancestors'].append([r['text'].lower() for r in comments if r in ancestors])
           test_docs['responses'].append([r['text'].lower() for r in comments if r in responses])
