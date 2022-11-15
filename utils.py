@@ -30,7 +30,6 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
   train_labels = []
   with open(train_file, 'r') as f:
     reader = csv.reader(f, delimiter='|')
-    counter = 0
     for row in reader:
       ancestors = row[0].split(' ')
       print(ancestors)
@@ -44,14 +43,12 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
         train_docs['ancestors'].append([comments[r]['text'] for r in ancestors])
         train_docs['responses'].append([comments[r]['text'] for r in responses])
       train_labels.append(labels)
-      counter += 1
-      print(counter)
 
+  print('done with train')
   test_docs = {'ancestors': [], 'responses': []}
   test_labels = []
   with open(test_file, 'r') as f:
-    reader = csv.reader(f, delimiter='|')
-    counter = 0
+    reader = csv.reader(f, delimiter='|
     for row in reader:
       ancestors = row[0].split(' ')
       responses = row[1].split(' ')
@@ -63,7 +60,6 @@ def load_sarc_responses(train_file, test_file, comment_file, max=None, lower=Tru
         test_docs['ancestors'].append([comments[r]['text'] for r in ancestors])
         test_docs['responses'].append([comments[r]['text'] for r in responses])
       test_labels.append(labels)
-      counter += 1
-      print(counter)
-
+  
+  print('done with test')
   return train_docs, test_docs, train_labels, test_labels
